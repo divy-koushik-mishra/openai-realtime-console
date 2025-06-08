@@ -145,30 +145,43 @@ export default function App() {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 right-0 h-16 flex items-center">
+      <nav className="w-full border  h-16 flex items-center">
         <div className="flex items-center gap-4 w-full m-4 pb-2 border-0 border-b border-solid border-gray-200">
           <img style={{ width: "24px" }} src={logo} />
           <h1>realtime console</h1>
         </div>
       </nav>
-      <main className="absolute top-16 left-0 right-0 bottom-0">
-        <section className="absolute top-0 left-0 right-[380px] bottom-0 flex">
-          <section className="absolute top-0 left-0 right-0 bottom-32 px-4 overflow-y-auto">
-            <EventLog events={events} />
-          </section>
-          <section className="absolute h-32 left-0 right-0 bottom-0 p-4">
-            <SessionControls
-              startSession={startSession}
-              stopSession={stopSession}
-              sendClientEvent={sendClientEvent}
-              sendTextMessage={sendTextMessage}
-              events={events}
-              isSessionActive={isSessionActive}
+
+      <main className="flex h-full px-5">
+        {/* Image column */}
+        <section className="w-1/5 h-full flex items-center justify-center">
+          <div className="w-full h-full p-4 flex items-center justify-center">
+            <img 
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop&h=2000"
+              alt="AI Technology"
+              className="w-full h-full object-cover rounded-lg"
+              style={{ aspectRatio: '3/4' }}
             />
-          </section>
+          </div>
         </section>
-        <section className="absolute top-0 w-[380px] right-0 bottom-0 p-4 pt-0 overflow-y-auto">
+        {/* Event log */}
+        <section className="w-2/5 h-max">
+          <EventLog events={events} />
+        </section>
+        {/* Tool panel */}
+        <section className="w-2/5 min-h-[calc(100vh-10rem)] px-4 pb-4 overflow-y-auto">
           <ToolPanel
+            sendClientEvent={sendClientEvent}
+            sendTextMessage={sendTextMessage}
+            events={events}
+            isSessionActive={isSessionActive}
+          />
+        </section>
+        {/* Session controls */}
+        <section className="fixed bottom-0 w-full p-4  border-t-2 border-gray-200 ">
+          <SessionControls
+            startSession={startSession}
+            stopSession={stopSession}
             sendClientEvent={sendClientEvent}
             sendTextMessage={sendTextMessage}
             events={events}
